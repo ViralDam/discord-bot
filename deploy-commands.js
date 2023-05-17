@@ -1,4 +1,11 @@
-const { REST, Routes } = require('discord.js');
+/**
+ * This file is used for testing and pushing comands to a particular server
+ * It pushes the commands to guild whose id we have added in config.json
+ * not required anymore as i have added code so that it autmatically gets pusshed 
+ * on joining a server.
+ */
+
+
 const { clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');

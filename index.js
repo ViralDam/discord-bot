@@ -25,6 +25,10 @@ for (const file of commandFiles) {
     }
 }
 
+/**
+ * loads the commands into the guild
+ * @param {*} guildId 
+ */
 const loadCommands = (guildId) => {
     const commands = [];
 
@@ -89,6 +93,7 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
+//when bot is newly added to new server it directly pushes the commands to the server
 client.on('guildCreate', async (guild) => {
     loadCommands(guild.id);
 })
