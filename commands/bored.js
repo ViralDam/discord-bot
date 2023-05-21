@@ -106,6 +106,8 @@ module.exports = {
         //get an actrivity from bored api
         let response = await query(params);
 
+        const loadingImg = new AttachmentBuilder('./assets/loading.gif');
+
         //make embeded reply
         const respEmbed = new EmbedBuilder()
             .setColor(0x8CD867)
@@ -114,13 +116,15 @@ module.exports = {
             .addFields(
                 { name: 'Type', value: response.type.charAt(0).toUpperCase() + response.type.slice(1), inline: true},
                 { name: 'Participants', value: response.participants.toString(), inline: true},
-            );
+            )
+            .setImage('attachment://loading.gif')
+            .setFooter({text: 'AI is drawing an image.'});
         if(response.link) {
             respEmbed.setURL(response.link);
         }
         
         //reply with activity
-        interaction.editReply({ embeds: [respEmbed] }); // Update 1 with the initial activity
+        interaction.editReply({ embeds: [respEmbed], files: [loadingImg] }); // Update 1 with the initial activity
 
         try {
             //use gpt to get activity description
